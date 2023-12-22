@@ -1,24 +1,23 @@
-import logo from './logo.svg';
 import './App.css';
+import supabase from './config/supabaseClient';
+import Landing from './layout/Landing';
+import { Route, Routes } from 'react-router-dom';
+import NotFound from './components/NotFound';
+import Home from './layout/Home';
+import Signup from './components/Signup';
+import Login from './components/Login';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Routes>
+      <Route element={<Landing />}>
+        <Route path='/' element={<Home />} />
+        <Route path='/sign-up' element={<Signup />}/>
+        <Route path='/login' element={<Login />}/>
+        <Route />
+      </Route>
+      <Route path="*" element={<NotFound />}/>
+    </Routes>
   );
 }
 
